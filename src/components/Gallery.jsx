@@ -50,6 +50,11 @@ function Gallery() {
 
   const hasModal = openIndex !== null;
 
+  useEffect(() => {
+    // Prevent stale modal/index state when switching filters.
+    setOpenIndex(null);
+  }, [filter]);
+
   const activeItem = useMemo(() => {
     if (openIndex === null) return null;
     return galleryItems[openIndex];

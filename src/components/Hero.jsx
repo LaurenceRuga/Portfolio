@@ -57,8 +57,7 @@ function Hero() {
           </p>
 
           <p className="hero-description">
-            <em>Add your personal tagline here.</em>
-            {/* TODO: Add your personal tagline here */}
+            <em>Your description goes here...</em>
           </p>
 
           <div className="hero-cta">
@@ -83,8 +82,7 @@ function Hero() {
 
         <div className="hero-photo-col reveal">
           <div className="hero-photo-placeholder">
-            <span className="hero-photo-label">[Your Photo Here]</span>
-            {/* TODO: Replace with <img src="./photo.jpg" /> */}
+            <img src="./photo.jpg" alt="Venn Ruga" />
           </div>
         </div>
       </div>
