@@ -13,52 +13,51 @@ const tags = [
 function About() {
   return (
     <section className="section" id="about">
-      <div className="container">
+      <div className="about-section-inner">
+        <h2 className="about-section-title reveal">About Me</h2>
         <div className="about-card reveal">
-          <div className="about-image-placeholder reveal">
-            {/* TODO: Add your photo in About section */}
-            <span>[Your Photo Here]</span>
-          </div>
+          <div className="about-card-grid">
+            <div className="about-info-col reveal">
+              <p className="about-name">Venn Laurence R. Ruga</p>
+              <p className="about-role">Treasurer, Computer Engineering Department Student Council</p>
 
-          <div className="about-content reveal">
-            <h2>About Me</h2>
-            <h3>Venn Laurence R. Ruga</h3>
-            <h4>Treasurer, Computer Engineering Department Student Council</h4>
-            <p className="about-meta">Nickname: Venn | Student Number: 2410566</p>
+              <div className="quick-info">
+                <div className="quick-info-item">
+                  <FaUserGraduate />
+                  <span>T.I.P. Manila — 2nd Year CpE</span>
+                </div>
+                <div className="quick-info-item">
+                  <FiMail />
+                  <span>mvlruga@tip.edu.ph</span>
+                </div>
+                <div className="quick-info-item">
+                  <FiMapPin />
+                  <span>Manila, Philippines</span>
+                </div>
+              </div>
 
-            <div className="about-bio-placeholder">
-              <p>
-                Your story goes here - who you are, what drives you, and what you're building toward.
-              </p>
-              {/* TODO: Replace with your personal bio */}
+              {/* TODO: Add your CV PDF to /public folder */}
+              <a href="./Ruga_CV.pdf" className="btn btn-green about-cv-btn">
+                Download CV
+              </a>
+
+              <div className="about-tags">
+                {tags.map((tag) => (
+                  <span className="tag-pill" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="quick-info">
-              <div className="quick-info-item reveal">
-                <FaUserGraduate />
-                <span>T.I.P. Manila - 2nd Year CpE</span>
+            <div className="about-bio-col reveal">
+              <h3 className="about-bio-heading">Who am I?</h3>
+              <div className="about-bio-placeholder">
+                <p>
+                  <em>Your story goes here...</em>
+                </p>
+                {/* TODO: Write your personal bio */}
               </div>
-              <div className="quick-info-item reveal">
-                <FiMail />
-                <span>mvlruga@tip.edu.ph</span>
-              </div>
-              <div className="quick-info-item reveal">
-                <FiMapPin />
-                <span>Manila, Philippines</span>
-              </div>
-            </div>
-
-            {/* TODO: Add your CV PDF to /public folder */}
-            <a href="./Ruga_CV.pdf" className="btn btn-green about-cv-btn">
-              Download CV
-            </a>
-
-            <div className="about-tags">
-              {tags.map((tag) => (
-                <span className="tag-pill" key={tag}>
-                  {tag}
-                </span>
-              ))}
             </div>
           </div>
         </div>

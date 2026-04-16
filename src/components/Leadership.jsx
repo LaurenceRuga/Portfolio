@@ -1,10 +1,11 @@
 import React from "react";
-import { FiBriefcase, FiClipboard, FiUsers, FiFlag } from "react-icons/fi";
+import { FiBriefcase, FiClipboard, FiUsers, FiFlag, FiChevronRight } from "react-icons/fi";
 
 const experiences = [
   {
     icon: <FiBriefcase />,
     title: "DSC Treasurer",
+    org: "Computer Engineering Dept. Student Council",
     period: "SY 2025-2026",
     points: [
       "Managed procurement and logistics for all org events",
@@ -15,6 +16,7 @@ const experiences = [
   {
     icon: <FiClipboard />,
     title: "DSC Treasurer Mentee",
+    org: "Computer Engineering Dept. Student Council",
     period: "SY 2024-2025",
     points: [
       "Learned treasury, budget management, financial documentation",
@@ -24,6 +26,7 @@ const experiences = [
   {
     icon: <FiUsers />,
     title: "NSTP Community Outreach",
+    org: "T.I.P. Manila — NSTP",
     period: "SY 2024-2025",
     points: [
       "Project Lead - Mural painting in Barangay Legarda",
@@ -33,6 +36,7 @@ const experiences = [
   {
     icon: <FiFlag />,
     title: "Key Events Handled",
+    org: "Campus & departmental organizations",
     period: "Academic Years 2024-2026",
     points: [
       "TIP Wave, CPE General Assembly (x3), CEA Week",
@@ -53,13 +57,22 @@ function Leadership() {
 
         <div className="leadership-grid">
           {experiences.map((item, index) => (
-            <article className="service-card reveal" key={item.title} style={{ transitionDelay: `${index * 70}ms` }}>
-              <div className="service-icon">{item.icon}</div>
-              <h3>{item.title}</h3>
-              <p className="card-period">{item.period}</p>
-              <ul className="card-points">
-                {item.points.map((point) => (
-                  <li key={point}>{point}</li>
+            <article
+              className="service-card leadership-card reveal"
+              key={item.title}
+              style={{ transitionDelay: `${index * 70}ms` }}
+            >
+              <span className="period-pill">{item.period}</span>
+              <div className="leadership-card-icon">{item.icon}</div>
+              <h3 className="leadership-card-title">{item.title}</h3>
+              <p className="leadership-card-org">{item.org}</p>
+
+              <ul className="card-points leadership-bullets">
+                {item.points.slice(0, 3).map((point) => (
+                  <li key={point}>
+                    <FiChevronRight />
+                    <span>{point}</span>
+                  </li>
                 ))}
               </ul>
             </article>
