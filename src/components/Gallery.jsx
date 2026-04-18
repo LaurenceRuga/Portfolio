@@ -101,12 +101,17 @@ function Gallery() {
           ))}
         </div>
 
-        <div className="gallery-grid">
+        <div key={activeFilter} className="gallery-grid" style={{ display: "grid" }}>
           {filtered.map((item, index) => (
             <article
-              className="gallery-card reveal"
+              className="gallery-card"
               key={item.id}
-              style={{ transitionDelay: `${index * 35}ms` }}
+              style={{
+                transitionDelay: `${index * 35}ms`,
+                background: "#111111",
+                visibility: "visible",
+                opacity: 1
+              }}
               onClick={() => setLightboxIndex(index)}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") setLightboxIndex(index);
@@ -116,7 +121,13 @@ function Gallery() {
             >
               <span className={`gallery-pill ${categoryClass[item.category]}`}>{item.category}</span>
               <div className="gallery-image-wrap">
-                <img className="gallery-image" src={item.src} alt={item.label} />
+                <img
+                  className="gallery-image"
+                  src={item.src}
+                  alt={item.label}
+                  loading="eager"
+                  style={{ opacity: 1, display: "block" }}
+                />
               </div>
               <div className="gallery-label">{item.label}</div>
             </article>
@@ -165,7 +176,7 @@ function Gallery() {
               <h3>{filtered[lightboxIndex].label}</h3>
               <p>
                 <strong>{filtered[lightboxIndex].category}</strong>
-                {" ù "}
+                {" ? "}
                 {filtered[lightboxIndex].date}
               </p>
             </div>
