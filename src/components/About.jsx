@@ -24,7 +24,7 @@ function About() {
               <div className="quick-info">
                 <div className="quick-info-item">
                   <FaUserGraduate />
-                  <span>T.I.P. Manila ó 2nd Year CpE</span>
+                  <span>T.I.P. Manila ù 2nd Year CpE</span>
                 </div>
                 <div className="quick-info-item">
                   <FiMail />
@@ -52,12 +52,11 @@ function About() {
 
             <div className="about-bio-col reveal">
               <h3 className="about-bio-heading">Who am I?</h3>
-              <div className="about-bio-placeholder">
-                <p>
-                  <em>Your story goes here...</em>
-                </p>
-                {/* TODO: Write your personal bio */}
-              </div>
+              <p className="about-bio-text">
+                CpE student by day, Mobile Legends player by night. I&apos;m a 2nd year
+                Computer Engineering student at T.I.P. Manila who loves solving
+                problems, leading with purpose, and growing a little every day.
+              </p>
             </div>
           </div>
         </div>

@@ -6,19 +6,19 @@ const stories = [
     icon: <FiTrendingUp />,
     title: "Leadership Journey",
     accent: "green",
-    todo: "TODO: Write your leadership story"
+    text: "My leadership began as a Treasurer Mentee at T.I.P.'s CpE Department Student Council, where I learned financial management, procurement, and event logistics. Even as a mentee, I stepped up as Co-Project Head for the Parol Making Competition. By the end of my first year, I ran for elected Treasurer, won, and was formally inducted in 2025 - shifting my view of leadership from a rank to a responsibility."
   },
   {
     icon: <FiHeart />,
     title: "Service Contributions",
     accent: "teal",
-    todo: "TODO: Describe your service work"
+    text: "As Treasurer, I managed procurement and logistics for major org events including TIP Wave, CPE General Assembly, CEA Week, and SHS Work Immersion. I led the CPE Officer Shirt project, headed CPE's NLC Parol Making entry, and served as Games Head during Anniversary Week 2026. I also represented CPE at Quantum Clash and led our NSTP Community Outreach mural project in Barangay Legarda."
   },
   {
     icon: <FiStar />,
     title: "Personal Advocacies",
     accent: "amber",
-    todo: "TODO: Share your personal values"
+    text: "I believe good leadership is built on consistency and showing up. Whether buying last-minute materials, filling in for absent officers, or leading a team through a competition final - I always choose to be present. I advocate for an org culture where every member, especially mentees, feels empowered to take initiative and grow beyond their assigned role."
   }
 ];
 
@@ -41,10 +41,7 @@ function Biography() {
               <div className={`story-accent-bar story-accent-bar--${item.accent}`} aria-hidden="true" />
               <div className={`story-icon story-icon--${item.accent}`}>{item.icon}</div>
               <h3>{item.title}</h3>
-              <div className="story-placeholder-box">
-                {/* TODO: Add biography paragraph */}
-                <p>{item.todo}</p>
-              </div>
+              <p className="story-text">{item.text}</p>
             </article>
           ))}
         </div>

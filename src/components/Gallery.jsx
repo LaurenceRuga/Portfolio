@@ -1,107 +1,84 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-const galleryItems = [
-  { category: "Award", label: "Induction Ceremony 2025", date: "2025", src: "/gallery/induction-ceremony-2025.png" },
-  { category: "Award", label: "Dean's List Certificate - SY 2024-2025", date: "SY 2024-2025", src: "/gallery/deans-list-certificate.png" },
-  { category: "Award", label: "Elected Treasurer Certificate", date: "End of SY 2024-2025", src: "/gallery/elected-treasurer-certificate.png" },
-  { category: "Award", label: "Champion - TIP 62nd Anniversary ML 2025", date: "2025", src: "/gallery/champion-tip-62nd.png", rotate: true },
-  { category: "Award", label: "Champion - CoESS GA ML Tournament 2025", date: "2025", src: "/gallery/champion-coess-ga.png" },
-  { category: "Award", label: "Top Quiz Scorer", date: "2025", src: "/gallery/second-place-cea-week.png" },
-  { category: "Award", label: "Top Borrower of Books - Sep 2024", date: "September 2024", src: "/gallery/top-borrower-sep-2024.png", rotate: true },
-  { category: "Award", label: "Top Borrower of Books - Oct 2024", date: "October 2024", src: "/gallery/top-borrower-oct-2024.png" },
-  { category: "Event", label: "Parol Making Competition 2024", date: "2024", src: "/gallery/parol-making-2024.png" },
-  { category: "Event", label: "CPE General Assembly 1st Sem 2025", date: "1st Sem 2025", src: "/gallery/cpe-ga-1st-sem-2025.png" },
-  { category: "Event", label: "CPE General Assembly 2nd Sem 2025", date: "2nd Sem 2025", src: "/gallery/cpe-ga-2nd-sem-2025.png" },
-  { category: "Event", label: "TIP Wave 2025", date: "2025", src: "/gallery/tip-wave-2025.png" },
-  { category: "Event", label: "SHS Work Immersion Seminar", date: "2025", src: "/gallery/shs-work-immersion.png" },
-  { category: "Certificate", label: "1st Menteeship Certificate", date: "2024", src: "/gallery/nlc-2025-parol.png" },
-  { category: "Event", label: "Sustainovate 2025", date: "2025", src: "/gallery/cea-week-2025.png" },
-  { category: "Event", label: "Quantum Clash - Booth Representative", date: "2026", src: "/gallery/quantum-clash.png" },
-  { category: "Event", label: "Innovation Fair 2026", date: "2026", src: "/gallery/innovation-fair-2026.png" },
-  { category: "Certificate", label: "NSTP Community Outreach - Barangay Legarda", date: "SY 2024-2025", src: "/gallery/nstp-community-outreach.png" }
+const GALLERY_ITEMS = [
+  { id: 1, src: process.env.PUBLIC_URL + "/gallery/deans-list-certificate.png", label: "Dean's List Certificate - 1st Sem SY 2024-2025", category: "Awards", date: "1st Sem SY 2024-2025" },
+  { id: 2, src: process.env.PUBLIC_URL + "/gallery/elected-treasurer-certificate.png", label: "Elected Treasurer Certificate - End of SY 2024-2025", category: "Awards", date: "End of SY 2024-2025" },
+  { id: 3, src: process.env.PUBLIC_URL + "/gallery/top-borrower-sep-2024.png", label: "Top Borrower of Books - September 2024", category: "Awards", date: "September 2024" },
+  { id: 4, src: process.env.PUBLIC_URL + "/gallery/top-borrower-oct-2024.png", label: "Top Borrower of Books - October 2024", category: "Awards", date: "October 2024" },
+  { id: 5, src: process.env.PUBLIC_URL + "/gallery/top-quiz-scorer.jpg", label: "Highest Quiz Score - SY 2025-2026", category: "Awards", date: "SY 2025-2026" },
+  { id: 6, src: process.env.PUBLIC_URL + "/gallery/champion-tip-62nd.png", label: "Champion - Mobile Legends, TIP 62nd Anniversary 2025", category: "Awards", date: "2025" },
+  { id: 7, src: process.env.PUBLIC_URL + "/gallery/champion-coess-ga.png", label: "Champion - Mobile Legends, CoESS GA Tournament 2025", category: "Awards", date: "2025" },
+  { id: 8, src: process.env.PUBLIC_URL + "/gallery/induction-ceremony-2025.png", label: "Induction Ceremony 2025", category: "Events", date: "2025" },
+  { id: 9, src: process.env.PUBLIC_URL + "/gallery/parol-making-2024.png", label: "Parol Making Competition 2024", category: "Events", date: "2024" },
+  { id: 10, src: process.env.PUBLIC_URL + "/gallery/cpe-ga-1st-sem-2025.png", label: "CPE General Assembly - 1st Semester 2025", category: "Events", date: "1st Semester 2025" },
+  { id: 11, src: process.env.PUBLIC_URL + "/gallery/cpe-ga-2nd-sem-2025.png", label: "CPE General Assembly - 2nd Semester 2025", category: "Events", date: "2nd Semester 2025" },
+  { id: 12, src: process.env.PUBLIC_URL + "/gallery/tip-wave-2025.png", label: "TIP Wave 2025", category: "Events", date: "2025" },
+  { id: 13, src: process.env.PUBLIC_URL + "/gallery/shs-work-immersion.png", label: "SHS Work Immersion Seminar - November 2025", category: "Events", date: "November 2025" },
+  { id: 14, src: process.env.PUBLIC_URL + "/gallery/quantum-clash.png", label: "Quantum Clash - Booth Representative 2026", category: "Events", date: "2026" },
+  { id: 15, src: process.env.PUBLIC_URL + "/gallery/innovation-fair-2026.png", label: "Innovation Fair 2026", category: "Events", date: "2026" },
+  { id: 16, src: process.env.PUBLIC_URL + "/gallery/nstp-community-outreach.png", label: "NSTP Community Outreach - Barangay Legarda", category: "Events", date: "Barangay Legarda" },
+  { id: 19, src: process.env.PUBLIC_URL + "/gallery/cea-week-2025.png", label: "CEA Week 2025", category: "Events", date: "2025" },
+  { id: 20, src: process.env.PUBLIC_URL + "/gallery/second-place-cea-week.png", label: "Second Place - CEA Week 2025", category: "Awards", date: "2025" },
+  { id: 17, src: process.env.PUBLIC_URL + "/gallery/leadership-positive-difference.jpg", label: "Leadership: Making a Positive Difference - April 2025", category: "Certificates", date: "April 2025" },
+  { id: 18, src: process.env.PUBLIC_URL + "/gallery/sustainnovate-2025.jpg", label: "Sustainnovate 2025 - September 2025", category: "Certificates", date: "September 2025" },
+  { id: 25, src: process.env.PUBLIC_URL + "/gallery/1st-certificate-menteeship.jpg", label: "1st Certicate for Menteeship 2024", category: "Certificates", date: "2024" },
+  { id: 26, src: process.env.PUBLIC_URL + "/gallery/2nd-certificate-menteeship.jpg", label: "2nd Certicate for Menteeship 2024", category: "Certificates", date: "2024" }
 ];
 
 const categoryClass = {
-  Award: "gallery-pill-award",
-  Event: "gallery-pill-event",
-  Certificate: "gallery-pill-certificate"
+  Awards: "gallery-pill-award",
+  Events: "gallery-pill-event",
+  Certificates: "gallery-pill-certificate"
 };
 
 const FILTER_TABS = [
-  { key: "all", label: "All" },
-  { key: "Award", label: "Awards" },
-  { key: "Event", label: "Events" },
-  { key: "Certificate", label: "Certificates" }
+  { key: "All", label: "All" },
+  { key: "Awards", label: "Awards" },
+  { key: "Events", label: "Events" },
+  { key: "Certificates", label: "Certificates" }
 ];
 
 function Gallery() {
-  const [openIndex, setOpenIndex] = useState(null);
-  const [filter, setFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const filteredItems = useMemo(() => {
-    if (filter === "all") return galleryItems.map((item, index) => ({ item, index }));
-    return galleryItems
-      .map((item, index) => ({ item, index }))
-      .filter(({ item }) => item.category === filter);
-  }, [filter]);
-
-  const filteredIndices = useMemo(() => filteredItems.map((x) => x.index), [filteredItems]);
-
-  const hasModal = openIndex !== null;
+  const filtered = useMemo(() => {
+    if (activeFilter === "All") return GALLERY_ITEMS;
+    return GALLERY_ITEMS.filter((item) => item.category === activeFilter);
+  }, [activeFilter]);
 
   useEffect(() => {
-    // Prevent stale modal/index state when switching filters.
-    setOpenIndex(null);
-  }, [filter]);
+    // Prevent stale lightbox index when switching filters.
+    setLightboxIndex(null);
+  }, [activeFilter]);
 
-  const activeItem = useMemo(() => {
-    if (openIndex === null) return null;
-    return galleryItems[openIndex];
-  }, [openIndex]);
-
-  useEffect(() => {
-    if (!hasModal) return undefined;
-
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") setOpenIndex(null);
-      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-      const delta = event.key === "ArrowRight" ? 1 : -1;
-      setOpenIndex((current) => {
-        if (current === null || filteredIndices.length === 0) return current;
-        const pos = filteredIndices.indexOf(current);
-        const base = pos === -1 ? 0 : pos;
-        const nextPos = (base + delta + filteredIndices.length) % filteredIndices.length;
-        return filteredIndices[nextPos];
-      });
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [hasModal, filteredIndices]);
+  const closeLightbox = () => setLightboxIndex(null);
 
   const goPrev = () => {
-    setOpenIndex((current) => {
-      if (current === null || filteredIndices.length === 0) return current;
-      const pos = filteredIndices.indexOf(current);
-      const base = pos === -1 ? 0 : pos;
-      const nextPos = (base - 1 + filteredIndices.length) % filteredIndices.length;
-      return filteredIndices[nextPos];
+    setLightboxIndex((current) => {
+      if (current === null || filtered.length === 0) return current;
+      return (current - 1 + filtered.length) % filtered.length;
     });
   };
 
   const goNext = () => {
-    setOpenIndex((current) => {
-      if (current === null || filteredIndices.length === 0) return current;
-      const pos = filteredIndices.indexOf(current);
-      const base = pos === -1 ? 0 : pos;
-      const nextPos = (base + 1) % filteredIndices.length;
-      return filteredIndices[nextPos];
+    setLightboxIndex((current) => {
+      if (current === null || filtered.length === 0) return current;
+      return (current + 1) % filtered.length;
     });
   };
 
-  const counterText =
-    openIndex !== null ? `${openIndex + 1} / ${galleryItems.length}` : "";
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowRight") goNext();
+      if (event.key === "ArrowLeft") goPrev();
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [filtered.length]);
 
   return (
     <section className="section" id="gallery">
@@ -116,8 +93,8 @@ function Gallery() {
             <button
               type="button"
               key={tab.key}
-              className={`gallery-filter-btn ${filter === tab.key ? "active" : ""}`}
-              onClick={() => setFilter(tab.key)}
+              className={`gallery-filter-btn ${activeFilter === tab.key ? "active" : ""}`}
+              onClick={() => setActiveFilter(tab.key)}
             >
               {tab.label}
             </button>
@@ -125,26 +102,21 @@ function Gallery() {
         </div>
 
         <div className="gallery-grid">
-          {filteredItems.map(({ item, index }, displayIndex) => (
+          {filtered.map((item, index) => (
             <article
               className="gallery-card reveal"
-              key={item.label}
-              style={{ transitionDelay: `${displayIndex * 35}ms` }}
-              onClick={() => setOpenIndex(index)}
+              key={item.id}
+              style={{ transitionDelay: `${index * 35}ms` }}
+              onClick={() => setLightboxIndex(index)}
               onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") setOpenIndex(index);
+                if (event.key === "Enter" || event.key === " ") setLightboxIndex(index);
               }}
               role="button"
               tabIndex={0}
             >
               <span className={`gallery-pill ${categoryClass[item.category]}`}>{item.category}</span>
-              <div className={`gallery-image-wrap ${item.rotate ? "gallery-image-wrap-rotated" : ""}`}>
-                {/* TODO: Replace src with actual image path */}
-                <img
-                  className={`gallery-image ${item.rotate ? "gallery-image-rotate" : ""}`}
-                  src={item.src}
-                  alt={item.label}
-                />
+              <div className="gallery-image-wrap">
+                <img className="gallery-image" src={item.src} alt={item.label} />
               </div>
               <div className="gallery-label">{item.label}</div>
             </article>
@@ -152,37 +124,55 @@ function Gallery() {
         </div>
       </div>
 
-      {hasModal && activeItem && (
-        <div className="gallery-modal-overlay" onClick={() => setOpenIndex(null)}>
+      {lightboxIndex !== null && filtered[lightboxIndex] && (
+        <div className="gallery-modal-overlay" onClick={closeLightbox}>
           <div className="gallery-modal" onClick={(event) => event.stopPropagation()}>
-            <button type="button" className="gallery-close" onClick={() => setOpenIndex(null)} aria-label="Close">
+            <button
+              type="button"
+              className="gallery-close"
+              onClick={closeLightbox}
+              aria-label="Close"
+            >
               <FiX />
             </button>
 
-            <button type="button" className="gallery-nav prev" onClick={goPrev} aria-label="Previous image">
+            <button
+              type="button"
+              className="gallery-nav prev"
+              onClick={goPrev}
+              aria-label="Previous image"
+            >
               <FiChevronLeft />
             </button>
-            <button type="button" className="gallery-nav next" onClick={goNext} aria-label="Next image">
+            <button
+              type="button"
+              className="gallery-nav next"
+              onClick={goNext}
+              aria-label="Next image"
+            >
               <FiChevronRight />
             </button>
 
-            <div className={`gallery-modal-media ${activeItem.rotate ? "gallery-modal-media-rotated" : ""}`}>
+            <div className="gallery-modal-media">
               <img
-                className={`gallery-modal-image ${activeItem.rotate ? "gallery-image-rotate" : ""}`}
-                src={activeItem.src}
-                alt={activeItem.label}
+                className="gallery-modal-image"
+                src={filtered[lightboxIndex].src}
+                alt={filtered[lightboxIndex].label}
               />
             </div>
+
             <div className="gallery-modal-meta">
-              <h3>{activeItem.label}</h3>
+              <h3>{filtered[lightboxIndex].label}</h3>
               <p>
-                <strong>{activeItem.category}</strong>
-                {" ∑ "}
-                {activeItem.date}
+                <strong>{filtered[lightboxIndex].category}</strong>
+                {" ù "}
+                {filtered[lightboxIndex].date}
               </p>
             </div>
           </div>
-          <div className="gallery-modal-counter">{counterText}</div>
+          <div className="gallery-modal-counter">
+            {lightboxIndex + 1} / {filtered.length}
+          </div>
         </div>
       )}
     </section>

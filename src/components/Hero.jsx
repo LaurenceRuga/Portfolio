@@ -56,10 +56,6 @@ function Hero() {
             <span className="type-cursor">|</span>
           </p>
 
-          <p className="hero-description">
-            <em>Your description goes here...</em>
-          </p>
-
           <div className="hero-cta">
             <a href="#portfolio" className="btn btn-green btn-hero-primary">
               View My Work
@@ -81,8 +77,10 @@ function Hero() {
         </div>
 
         <div className="hero-photo-col reveal">
-          <div className="hero-photo-placeholder">
+          <div className="hero-photo-frame">
+            <div className="hero-photo-placeholder">
             <img src="./photo.jpg" alt="Venn Ruga" />
+            </div>
           </div>
         </div>
       </div>
