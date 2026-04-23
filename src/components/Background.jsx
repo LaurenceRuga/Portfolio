@@ -32,13 +32,13 @@ function Background() {
                 <div className="timeline-item-vertical reveal">
                   <h5>Technological Institute of the Philippines, Manila</h5>
                   <p>B.S. Computer Engineering | 2024 – Present</p>
-                  <span className="timeline-badge">?? Dean&apos;s List — 1st Sem SY 2024–2025</span>
+                  <span className="timeline-badge">Dean&apos;s List — 1st Sem SY 2024–2025</span>
                 </div>
                 <div className="timeline-item-vertical reveal">
                   <h5>Dr. Carlos Lanting College</h5>
                   <p>Senior High School | 2022 – 2024</p>
-                  <span className="timeline-badge">?? With Honors — SY 2022–2023</span>
-                  <span className="timeline-badge">?? With Honors — SY 2023–2024</span>
+                  <span className="timeline-badge">With Honors — SY 2022–2023</span>
+                  <span className="timeline-badge">With Honors — SY 2023–2024</span>
                 </div>
               </div>
 

@@ -159,7 +159,7 @@ section#home .hero-left .hero-cta {
 .hero-right img {
   position: absolute;
   left: auto;
-  right: clamp(2%, 4vw, 8%);
+  right: -25%;
   bottom: 0;
   top: clamp(56px, 7vh, 96px);
   display: block;
